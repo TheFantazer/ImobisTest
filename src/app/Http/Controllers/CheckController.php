@@ -11,7 +11,7 @@ class CheckController extends Controller
     {
         $input = $request->input('text');
         $language = $this->detectLanguage($input);
-        $output = $this->highlightMismatchedCharacters($input, $language);
+        $output = $this->highlight($input, $language);
 
         if ($request->isMethod('post')) {
             Check::create([
@@ -35,7 +35,7 @@ class CheckController extends Controller
         return ($ruCount >= $enCount) ? 'ru' : 'en';
     }
 
-    private function highlightMismatchedCharacters($text, $language)
+    private function highlight($text, $language)
     {
         $pattern = ($language === 'ru') ? '/[a-zA-Z]/' : '/[а-яА-Я]/u';
         return preg_replace($pattern, '<span class="highlight">$0</span>', $text);
