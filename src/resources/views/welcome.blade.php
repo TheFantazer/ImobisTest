@@ -10,8 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .highlight {
-            background-color: #ffcc00; /* Желтый цвет для подсветки */
-            font-weight: bold; /* Жирный шрифт */
+            background-color: #ffcc00;
+            font-weight: bold;
         }
         .result-box {
             background-color: #f8f9fa;
@@ -64,7 +64,7 @@
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ text: text })
+            body: JSON.stringify({ text: text, save:true })
         })
             .then(response => response.json())
             .then(data => {
@@ -81,7 +81,7 @@
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ text: text })
+            body: JSON.stringify({ text: text, save:false })
         })
             .then(response => response.json())
             .then(data => {

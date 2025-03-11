@@ -13,7 +13,7 @@ class CheckController extends Controller
         $language = $this->detectLanguage($input);
         $output = $this->highlight($input, $language);
 
-        if ($request->isMethod('post')) {
+        if ($request->input('save')) {
             Check::create([
                 'input' => $input,
                 'output' => $output,
